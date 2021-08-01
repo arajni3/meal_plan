@@ -62,6 +62,7 @@ std::make_pair(60, 392), std::make_pair(80, 493)}) {
             if (dp[i] == meal_packages[j].second + dp[i - j]) {
                 meal_package_best_index = j;
                 i -= meal_packages[j].first;
+            }
         }
         if (meal_package_best_index == -1) {
             meal_package_best_index = next_meal_package(i, meal_packages);
