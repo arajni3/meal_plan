@@ -1,5 +1,6 @@
 #include <utility>
 #include <vector>
+
 // meal_packages[j] = {n_j meals, some cost f(n_j)} where f is the same throughout
 // meal_packages and where n_j is increasing in j and f is increasing in its input (number of meals)
 /* this function returns the index of the meal package in meal_packages that has the smallest
