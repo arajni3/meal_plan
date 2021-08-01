@@ -4,7 +4,8 @@
    number of meals that is >= number_of_meals
 */ 
 int next_meal_package(int number_of_meals, 
-std::pair<int, int>* meal_packages = {{20, 142}, {40, 276}, {60, 392}, {80, 493}}) {
+std::pair<int, int>* meal_packages = {std::make_pair(20, 142), std::make_pair(40, 276), 
+std::make_pair(60, 392), std::make_pair(80, 493)}) {
     int low = 0, high = meal_packages.size() - 1;
     while (low < mid) {
         int mid = (low + high) >> 1;
@@ -18,7 +19,8 @@ std::pair<int, int>* meal_packages = {{20, 142}, {40, 276}, {60, 392}, {80, 493}
    {n_j, g(n_j)} where g(n_j) is the optimal number of times the jth meal package is purchased
 */
 std::pair<int, int>* get_mealplan(int number_of_meals, 
-std::pair<int, int>* meal_packages = {{20, 142}, {40, 276}, {60, 392}, {80, 493}}) {
+std::pair<int, int>* meal_packages = {std::make_pair(20, 142), std::make_pair(40, 276), 
+std::make_pair(60, 392), std::make_pair(80, 493)}) {
     // dp[i] = total cost when one needs number_of_meals meals
     int dp[number_of_meals + 1];
 
@@ -45,10 +47,13 @@ std::pair<int, int>* meal_packages = {{20, 142}, {40, 276}, {60, 392}, {80, 493}
 
     // now backtrack to find the optimal number of purchases of each meal package
     std::pair<int, int> mealplan[meal_packages.size()];
-    for (int j = 0; j < meal_packages.size()) {
+
+    for (int j = 0; j < meal_packages.size(); ++j) {
         mealplan[j] = std::make_pair(meal_packages[j].first, 0);
     }
+
     int i = number_of_meals;
+
     while (i > 0) {
         int meal_package_best_index = -1;
         for (int j = 0; j < meal_packages.size() && meal_package_best_index == -1; ++j) {
